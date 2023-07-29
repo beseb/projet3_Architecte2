@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Booki2_Project",
+		"cSpell.language": "en,lorem,fr-FR",
+		"cSpell.words": [
+			"Bluel"
+		]
+	}
+}

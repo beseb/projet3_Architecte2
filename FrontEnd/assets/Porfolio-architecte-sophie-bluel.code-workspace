@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Porfolio-architecte-sophie-bluel",
+		"liveServer.settings.AdvanceCustomBrowserCmdLine": ""
+	}
+}
