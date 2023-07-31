@@ -129,14 +129,13 @@ let btnPublier = document.getElementById("btnPublier");
 
 btnPublier.addEventListener("click", () => {
   // Ici, créer une boite de dialogue pour demander si l'on valide ou non la publication
-  const confirmation = confirm(
-    "Voulez-vous confirmer les nouvelles publications ?"
-  );
+  const confirmation = confirm("Voulez-vous confirmer les modifications ?");
+  let modifAlert = 0;
 
   if (confirmation) {
     if (tableauSuppression !== "") {
       console.log("Voici le tableau suppr. rempli " + tableauSuppression);
-      // fetch delete en fonction de l'id
+      // Ici on crée un compteur pour n'afficher qu'une seule fois le message de confirmation/erreur
       // Ici, on supprime les éléments qui ne sont plus dans travauxBis
       for (let i = 0; i < tableauSuppression.length; i++) {
         fetch("http://localhost:5678/api/works/" + tableauSuppression[i], {
@@ -147,14 +146,19 @@ btnPublier.addEventListener("click", () => {
           },
         }).then((response) => {
           if (response.ok) {
-            alert(
-              "La photo n°" +
-                tableauSuppression[i] +
-                " a été supprimée avec succès !"
-            );
+            if (modifAlert === 0) {
+              alert("Les modifications ont été effectuées avec succès !");
+              modifAlert++;
+            } else {
+              // On ne fait rien si modifAlert est != de 0. L'alerte ne sera affichée qu'une seule fois
+            }
           } else {
-            alert("La suppression a échouée !");
-            console.log(response);
+            if (modifAlert === 0) {
+              alert("Les modifications ont échouées.");
+              console.log(response);
+              modifAlert++;
+            } else {
+            }
           }
         });
       }
@@ -166,17 +170,16 @@ btnPublier.addEventListener("click", () => {
     }
     if (tableauAjout !== "") {
       console.log("Voici le tableau ajout. rempli " + tableauAjout);
-
       // fetch post et charge utile
-      // On crée la charge utile depuis chaque "work" de travauxBis
+      // On crée la charge utile depuis chaque entrée du tableauAjout
       for (let i = 0; i < tableauAjout.length; i++) {
         let chargeUtile = new FormData();
         chargeUtile.set("image", tableauAjout[i].image);
         chargeUtile.set("title", tableauAjout[i].title);
         chargeUtile.set("category", parseInt(tableauAjout[i].categoryId));
 
-        console.log(chargeUtile)
-        console.log(chargeUtile.get("image"))
+        console.log(chargeUtile);
+        console.log(chargeUtile.get("image"));
         fetch("http://localhost:5678/api/works", {
           method: "POST",
           headers: {
@@ -185,11 +188,19 @@ btnPublier.addEventListener("click", () => {
           body: chargeUtile,
         }).then((response) => {
           if (response.ok) {
-            console.log(response);
-            alert("Les photos ont été ajoutée avec succès !");
+            if (modifAlert === 0) {
+              alert("Les modifications ont été effectuées avec succès !");
+              modifAlert++;
+            } else {
+              // On ne fait rien si modifAlert est != de 0. L'alerte ne sera affichée qu'une seule fois
+            }
           } else {
-            alert("L'ajout a échoué");
-            console.log(response);
+            if (modifAlert === 0) {
+              alert("Les modifications ont échouées.");
+              console.log(response);
+              modifAlert++;
+            } else {
+            }
           }
         });
         // On vide le tableau Ajout

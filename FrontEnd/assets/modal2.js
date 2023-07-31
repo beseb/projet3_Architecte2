@@ -1,5 +1,10 @@
 import { genererCategories } from "./gallery.js";
-import { closeModals, createPhotoModal, createPhotoGallery } from "./modal1.js";
+import {
+  closeModals,
+  createPhotoModal,
+  createPhotoGallery,
+  suppressionPhoto,
+} from "./modal1.js";
 import { travauxBis } from "./script.js";
 
 let modal2 = document.querySelector(".modal2");
@@ -36,13 +41,25 @@ export function affichageModal2() {
     <select name="inputCategorie" id="categorie" required>
     </select>
       <hr>
-      <input class="boutonValiderAjoutPhoto" type ="submit">Valider</input>
+      <button class="boutonValiderAjoutPhoto" type ="submit">Valider</button>
       </form>
     `;
   genererCategories();
   // On appelle la fonction qui permet de gérer le bouton fermer et retour
   ajouterEvenementsBoutons();
-
+  // On gère le changement de couleur du bouton Valider du formulaire, si les champs sont remplis
+  const inputTitre = document.querySelector("#titre");
+  const inputFile = document.getElementById("inputFile");
+  const boutonValiderAjoutPhoto = document.querySelector(".boutonValiderAjoutPhoto");
+  
+  inputTitre.addEventListener("input", function() {
+    changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto);
+  });
+  
+  inputFile.addEventListener("change", function() {
+    changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto);
+  });
+  
   /**
    * Permettre de télécharger une image, en ayant le input[type="file"] caché, pour plus de design et la preview du document televersé
    */
@@ -73,7 +90,6 @@ export function affichageModal2() {
    * Gestion du formulaire et envoi des photos ajoutées
    */
   const form = document.querySelector(".formModal2");
-
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     // On vérifie les champs et on retourne les alertes si les données du formulaire ne sont pas valides
@@ -105,6 +121,8 @@ export function affichageModal2() {
     let modal1Photos = document.querySelector(".modal1-photos");
     let newModalFigure = createPhotoModal(uploadedWork);
     modal1Photos.appendChild(newModalFigure);
+    // On lui ajoute le listener pour effacer la photo ajoutée
+    suppressionPhoto();
     // On crée la nouvelle image dans la galerie principale
     let gallery = document.querySelector(".gallery");
     let newGalleryFigure = createPhotoGallery(uploadedWork);
@@ -189,4 +207,16 @@ function checkInputs() {
   }
 
   return true;
+}
+
+
+
+function changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto) {
+  if (inputTitre.value !== "" && inputFile.files.length !== 0) {
+    boutonValiderAjoutPhoto.classList.add("boutonValiderActif")
+    boutonValiderAjoutPhoto.disabled = false;
+  } else {
+    boutonValiderAjoutPhoto.classList.remove("boutonValiderActif")
+    boutonValiderAjoutPhoto.disabled = true;
+  }
 }
