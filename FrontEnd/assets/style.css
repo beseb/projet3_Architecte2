@@ -692,11 +692,20 @@ display: none;
   position: relative;
   bottom: -7px;
   left: 142px;
+  text-align: center;
+  font-family: Syne;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
 }
 .boutonValiderActif{
   background: #1d6154;
 }
-
+.boutonValiderActif:hover{
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid black;
+}
 
 .modal1-ajouter-une-photo {
   margin-top: 30px;
@@ -718,7 +727,7 @@ display: none;
   background-color: white !important;
   color: black !important;
 }
-.modal1-supprimer-toutes-photos {
+.modal1-deleteAll{
   width: 230px;
   color: #d65353 !important;
   text-align: center !important;
@@ -730,7 +739,7 @@ display: none;
   border: none !important;
   background-color: white;
 }
-.modal1-supprimer-toutes-photos:hover {
+.modal1-deleteAll:hover {
   color: #000 !important;
   font-weight: 700;
 }

@@ -77,7 +77,7 @@ export function affichageModal2() {
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         previewImg.src = reader.result;
-        // Affichage de la preview image à 100% de sa hauteur, en lui retirant sa class CSS "icone"
+        // Affichage de la preview image à 100% de sa hauteur, en lui retirant sa classe CSS "icone"
         previewImg.classList.remove("icone");
         // Disparition du bouton upload et du texte d'infoAjout
         labelAjoutPhoto.style.display = "none";
@@ -212,11 +212,9 @@ function checkInputs() {
 
 
 function changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto) {
-  if (inputTitre.value !== "" && inputFile.files.length !== 0) {
+  if (inputTitre.value.trim() !== "" && inputFile.files.length !== 0) {
     boutonValiderAjoutPhoto.classList.add("boutonValiderActif")
-    boutonValiderAjoutPhoto.disabled = false;
   } else {
     boutonValiderAjoutPhoto.classList.remove("boutonValiderActif")
-    boutonValiderAjoutPhoto.disabled = true;
   }
 }

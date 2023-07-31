@@ -25,7 +25,7 @@ export function affichageModal() {
         
         <hr>
         <button class="modal1-ajouter-une-photo">Ajouter une photo</button>
-        <button class="modal1-supprimer-toutes-photos">Supprimer la galerie</button>
+        <button class="modal1-deleteAll">Supprimer la galerie</button>
         `;
 
   // Récuperation de la div "Modal1-photos" si elle existe
@@ -46,6 +46,9 @@ export function affichageModal() {
   suppressionPhoto();
 
   deletePhotoGalleryEdition();
+  // EventListener pour supprimer tous les travaux
+  let btnDeleteAll = document.querySelector(".modal1-deleteAll");
+  deleteAll(btnDeleteAll);
   /**
    * Fonction pour ajouter le bouton Fermer sur la modal 1 */
   function ajouterEvenementsBoutons() {
@@ -67,10 +70,6 @@ export function affichageModal() {
     ) {
       closeModals();
     }
-  }
-  // Fonction pour empêcher la fermeture des modales
-  function removeModal1CloseEvent() {
-    document.removeEventListener("click", handleClickOutsideModal);
   }
 
   // EventListener pour écouter les clicks en dehors des modales
@@ -199,6 +198,27 @@ function deletePhotoGalleryEdition(dataId) {
   figures.forEach((fig) => {
     if (fig.getAttribute("data-id") === dataId) {
       fig.style.display = "none";
+    }
+  });
+}
+
+function deleteAll(btnDeleteAll) {
+  let figures = document.querySelectorAll("figure");
+  btnDeleteAll.addEventListener("click", () => {
+    let confirmation = confirm(
+      "Attention ! Voulez-vous vraiment supprimer l'ensemble des travaux ?"
+    );
+    if (confirmation) {
+      figures.forEach((fig) => {
+        if (fig.classList.contains("fig-sophie-bluel")) {
+          // On ne supprime pas la figure qui contient la photo de l'architecte
+        } else {
+          // On ajoute chaque id au tableau de suppression
+          tableauSuppression.push(fig.dataset.id);
+          // on retire les figures
+          fig.remove();
+        }
+      });
     }
   });
 }
