@@ -42,7 +42,7 @@ genererAffichageTravaux(travaux);
 // Filtres tous
 const boutonTous = document.querySelector(".btnTous");
 boutonTous.addEventListener("click", () => {
-  genererAffichageTravaux(travaux, "gallery");
+  genererAffichageTravaux(travaux, "");
 });
 
 // Filtres objets
@@ -52,7 +52,7 @@ boutonObjet.addEventListener("click", () => {
     return travail.categoryId === 1;
   });
   // Effacement de l'écran et regénération de la page avec les pièces filtrées uniquement
-  genererAffichageTravaux(travauxObjets, "gallery");
+  genererAffichageTravaux(travauxObjets);
 });
 // Filtres appartements
 const boutonAppartements = document.querySelector(".btnAppartements");
@@ -61,7 +61,7 @@ boutonAppartements.addEventListener("click", () => {
     return travail.categoryId === 2;
   });
   // Effacement de l'écran et regénération de la page avec les pièces filtrées uniquement
-  genererAffichageTravaux(travauxAppartements, "gallery");
+  genererAffichageTravaux(travauxAppartements);
 });
 // Filtres hotel & restaurants
 const boutonHotelEtRestaurants = document.querySelector(
@@ -72,7 +72,7 @@ boutonHotelEtRestaurants.addEventListener("click", () => {
     return travail.categoryId === 3;
   });
   // Effacement de l'écran et regénération de la page avec les pièces filtrées uniquement
-  genererAffichageTravaux(travauxHotelEtRestaurants, "gallery");
+  genererAffichageTravaux(travauxHotelEtRestaurants);
 });
 
 /***
@@ -89,7 +89,7 @@ if (userId != null && token != null) {
   // le bouton Login disparait
   let loginLink = document.getElementById("loginLink");
   loginLink.style.display = "none";
-  loginLink.style.padding = "0px";
+  loginLink.style.padding = "0px";sma
   // Le bouton logout apparait
   let logoutLink = document.getElementById("logoutLink");
   logoutLink.style.display = null;
