@@ -72,10 +72,10 @@ form.addEventListener("submit", async (event) => {
         
     } else {
       // La demande de connexion a échoué
-      alert("Erreur dans l'identifiant ou le mot de passe " + error.message);
+      alert("Erreur dans l'identifiant ou le mot de passe " );
     }
   } catch (error) {
-    alert("Erreur dans l'identifiant ou le mot de passe. " + error.message);
+    alert("Erreur dans l'identifiant ou le mot de passe. " );
   
   }
 });

@@ -42,7 +42,7 @@ genererAffichageTravaux(travaux);
 // Filtres tous
 const boutonTous = document.querySelector(".btnTous");
 boutonTous.addEventListener("click", () => {
-  genererAffichageTravaux(travaux, "");
+  genererAffichageTravaux(travaux);
 });
 
 // Filtres objets
@@ -89,7 +89,7 @@ if (userId != null && token != null) {
   // le bouton Login disparait
   let loginLink = document.getElementById("loginLink");
   loginLink.style.display = "none";
-  loginLink.style.padding = "0px";sma
+  loginLink.style.padding = "0px";
   // Le bouton logout apparait
   let logoutLink = document.getElementById("logoutLink");
   logoutLink.style.display = null;
