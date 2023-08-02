@@ -3,11 +3,11 @@ import { affichageModal, tableauSuppression } from "./modal1.js";
 import { tableauAjout } from "./modal2.js";
 
 /**
- * Function pour recuperer les travaux depuis l'API ou le sessionStorage
+ * Function pour recuperer les travaux depuis l'API ou le localStorage
  */
 
 // Récupération des travaux via le local storage
-export let travaux = window.sessionStorage.getItem("travaux");
+export let travaux = window.localStorage.getItem("travaux");
 
 if (travaux === null) {
   // Récupération des élements depuis l'API
@@ -17,8 +17,8 @@ if (travaux === null) {
 
   // Transformation des pièces en JSON
   const valeurTravaux = JSON.stringify(travaux);
-  // Stockage des informations dans le sessionStorage
-  window.sessionStorage.setItem("travaux", valeurTravaux);
+  // Stockage des informations dans le localStorage
+  window.localStorage.setItem("travaux", valeurTravaux);
 } else {
   travaux = JSON.parse(travaux);
 }
@@ -165,8 +165,8 @@ btnPublier.addEventListener("click", () => {
       // On vide le tableau de suppression
       tableauSuppression.splice(0, tableauSuppression.length);
       console.log("voici le tableau suppr. vidé : " + tableauSuppression);
-      // On supprime le tableau "travaux" du sessionStorage pour forcer le réaffichage au logout
-      sessionStorage.removeItem("travaux");
+      // On supprime le tableau "travaux" du localStorage pour forcer le réaffichage au logout
+      localStorage.removeItem("travaux");
     }
     if (tableauAjout !== "") {
       console.log("Voici le tableau ajout. rempli " + tableauAjout);
@@ -206,8 +206,8 @@ btnPublier.addEventListener("click", () => {
         // On vide le tableau Ajout
         tableauAjout.splice(0, tableauAjout.length);
         console.log("voici le tableau ajout. vidé : " + tableauAjout);
-        // On supprime le tableau "travaux" du sessionStorage pour forcer le réaffichage au logout
-        sessionStorage.removeItem("travaux");
+        // On supprime le tableau "travaux" du localStorage pour forcer le réaffichage au logout
+        localStorage.removeItem("travaux");
       }
     }
   }

@@ -772,8 +772,8 @@ justify-items: flex-end;
   display: flex;
   justify-content: flex-end;
   gap: 3px;
-  top: -107px;
-  left: 0px;
+  top: -98px;
+  left: -3px;
   position: relative;
   background-color: #306685;
 }

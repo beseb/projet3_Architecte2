@@ -33,6 +33,8 @@ export function affichageModal() {
 
   // On appelle la fonction pour créer les photos une par une et les ajouter dans la modal1
   travauxBis.forEach((work) => {
+    
+    
     let figModal = createPhotoModal(work);
     modal1Photos.appendChild(figModal);
   });

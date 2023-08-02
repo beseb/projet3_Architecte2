@@ -50,18 +50,16 @@ export function affichageModal2() {
   // On gère le changement de couleur du bouton Valider du formulaire, si les champs sont remplis
   const inputTitre = document.querySelector("#titre");
   const inputFile = document.getElementById("inputFile");
-  const boutonValiderAjoutPhoto = document.querySelector(
-    ".boutonValiderAjoutPhoto"
-  );
-
-  inputTitre.addEventListener("input", function () {
-    changerCouleurBtnValider(inputTitre, inputFile, boutonValiderAjoutPhoto);
+  const boutonValiderAjoutPhoto = document.querySelector(".boutonValiderAjoutPhoto");
+  
+  inputTitre.addEventListener("input", function() {
+    changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto);
   });
-
-  inputFile.addEventListener("change", function () {
-    changerCouleurBtnValider(inputTitre, inputFile, boutonValiderAjoutPhoto);
+  
+  inputFile.addEventListener("change", function() {
+    changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto);
   });
-
+  
   /**
    * Permettre de télécharger une image, en ayant le input[type="file"] caché, pour plus de design et la preview du document televersé
    */
@@ -115,27 +113,22 @@ export function affichageModal2() {
       title: title,
       categoryId: idCategorie,
     };
-    // On vérifie que le projet n'est pas déjà ajouté
-
-    if (checkProjetExistant(uploadedWork,tableauAjout)) {
-      alert("Le projet a déjà été ajoutée !");
-    } else {
-      travauxBis.push(uploadedWork);
-      tableauAjout.push(uploadedWork);
-      console.log(tableauAjout);
-      // On crée la nouvelle image dans la modal1
-      let modal1Photos = document.querySelector(".modal1-photos");
-      let newModalFigure = createPhotoModal(uploadedWork);
-      modal1Photos.appendChild(newModalFigure);
-      // On lui ajoute le listener pour effacer la photo ajoutée
-      suppressionPhoto();
-      // On crée la nouvelle image dans la galerie principale
-      let gallery = document.querySelector(".gallery");
-      let newGalleryFigure = createPhotoGallery(uploadedWork);
-      gallery.appendChild(newGalleryFigure);
-      // On ferme la modal 2
-      closeModal2();
-    }
+    travauxBis.push(uploadedWork);
+    tableauAjout.push(uploadedWork);
+    console.log(tableauAjout);
+    // On envoie tout ça à l'API ?
+    // On crée la nouvelle image dans la modal1
+    let modal1Photos = document.querySelector(".modal1-photos");
+    let newModalFigure = createPhotoModal(uploadedWork);
+    modal1Photos.appendChild(newModalFigure);
+    // On lui ajoute le listener pour effacer la photo ajoutée
+    suppressionPhoto();
+    // On crée la nouvelle image dans la galerie principale
+    let gallery = document.querySelector(".gallery");
+    let newGalleryFigure = createPhotoGallery(uploadedWork);
+    gallery.appendChild(newGalleryFigure);
+    // On ferme la modal 2
+    closeModal2();
   });
 }
 
@@ -216,24 +209,12 @@ function checkInputs() {
   return true;
 }
 
-function changerCouleurBtnValider(
-  inputTitre,
-  inputFile,
-  boutonValiderAjoutPhoto
-) {
+
+
+function changerCouleurBtnValider(inputTitre,inputFile,boutonValiderAjoutPhoto) {
   if (inputTitre.value.trim() !== "" && inputFile.files.length !== 0) {
-    boutonValiderAjoutPhoto.classList.add("boutonValiderActif");
+    boutonValiderAjoutPhoto.classList.add("boutonValiderActif")
   } else {
-    boutonValiderAjoutPhoto.classList.remove("boutonValiderActif");
-  }
-}
-function checkProjetExistant(uploadedWork,tableauAjout){
-  for(let i =0; i< tableauAjout.length; i++){
-    if(tableauAjout[i].categoryId === uploadedWork.categoryId && tableauAjout[i].title === uploadedWork.title && tableauAjout[i].image === uploadedWork.image ){
-      return false
-    }
-    else{
-      return true;
-    }
+    boutonValiderAjoutPhoto.classList.remove("boutonValiderActif")
   }
 }
